@@ -1,6 +1,6 @@
 package com.dsp.kindness.domain.entity
 
-data class Act(
-    val id: Int,
+data class ActEntity(
+    val uid: String,
     val description: String
 )

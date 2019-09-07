@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "125344186623",
+    "firebase_url": "https://kindness-9e76d.firebaseio.com",
+    "project_id": "kindness-9e76d",
+    "storage_bucket": "kindness-9e76d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125344186623:android:d8ea556ba1111027034cca",
+        "android_client_info": {
+          "package_name": "com.dsp.kindness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125344186623-kv49t502rpemu7dpvq9bltdovsk4o08c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdAXF9IAOw3G6WVVWpfm068vx__p5Iv3o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125344186623-kv49t502rpemu7dpvq9bltdovsk4o08c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

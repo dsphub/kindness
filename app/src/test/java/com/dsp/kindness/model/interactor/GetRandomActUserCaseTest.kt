@@ -1,7 +1,7 @@
 package com.dsp.kindness.model.interactor
 
 import com.dsp.kindness.UnitTest
-import com.dsp.kindness.domain.entity.Act
+import com.dsp.kindness.domain.entity.ActEntity
 import com.dsp.kindness.domain.interactor.GetRandomAct
 import com.dsp.kindness.domain.interactor.Right
 import com.dsp.kindness.domain.interactor.UseCase
@@ -23,7 +23,7 @@ class GetRandomActUserCaseTest : UnitTest() {
     @Before
     fun setUp() {
         useCase = GetRandomAct(repository)
-        given { repository.getRandomAct() }.willReturn(Right(Act(1, "test")))
+        given { repository.getRandomAct() }.willReturn(Right(ActEntity("1", "test")))
     }
 
     @Test
