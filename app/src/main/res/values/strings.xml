@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">Kindness</string>
+
+    <string name="app_name">Поступки доброты</string>
 
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="background">Background</string>
+
 </resources>
