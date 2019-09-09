@@ -20,9 +20,9 @@
         android:layout_height="match_parent"
         android:keepScreenOn="true"
         android:textColor="@color/colorAccent"
-        android:fontFamily="@font/classica_two"
-        android:textStyle="bold"
-        android:textSize="40sp"
+        android:fontFamily="@font/font11393"
+        android:textStyle="normal"
+        android:textSize="80sp"
         android:gravity="center" />
 
     <!-- This FrameLayout insets its children based on system windows using
