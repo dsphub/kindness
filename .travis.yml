@@ -38,4 +38,41 @@ branches:
     - travis
 
 script:
+    - echo $TRAVIS_TAG
+    - echo $TRAVIS_COMMIT
+    - echo $TRAVIS_BUILD_NUMBER
     - ./gradlew build check
+
+before_deploy:
+  - export APP_VERSION=$(./gradlew :app:printVersionName)
+  - echo Version $APP_VERSION
+deploy:
+    - provider: travis
+        on:
+            branch: travis
+            condition: $TRAVIS_TAG =~ ^\d{10}$
+    - provider: github
+        overwrite: true
+        skip_cleanup: true
+        name: "$APP_VERSION"
+        tag_name: "$APP_VERSION"
+        on:
+            branch: github
+    - provider: develop
+        on:
+            branch: develop
+    - provider: alpha
+        on:
+            tags: true
+            branch: master
+            condition: $TRAVIS_TAG =~ ^\d{0,2}\.\d{0,2}\.\d{0,4}-alpha$
+    - provider: beta
+        on:
+            tags: true
+            branch: master
+            condition: $TRAVIS_TAG =~ ^\d{0,2}\.\d{0,2}\.\d{0,4}-beta$
+    - provider: prod
+        on:
+            tags: true
+            branch: master
+            condition: $TRAVIS_TAG =~ ^\d{0,2}\.\d{0,2}\.\d{0,4}$
