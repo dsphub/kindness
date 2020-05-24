@@ -6,6 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
 
+def keystorePropertiesFile = file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -17,9 +21,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        // Creates a signing configuration called "release".
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -28,6 +42,23 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
     }
     buildToolsVersion = '29.0.2'
+    flavorDimensions "version"
+    productFlavors {
+        alpha {
+            versionName generateAlphaVersionName()
+            versionCode generateAlphaVersionCode()
+        }
+
+        beta {
+            versionName generateBetaVersionName()
+            versionCode generateBetaVersionCode()
+        }
+
+        prod {
+            versionName generateProdVersionName()
+            versionCode generateProdVersionCode()
+        }
+    }
 }
 
 androidExtensions {

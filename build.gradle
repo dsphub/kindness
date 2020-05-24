@@ -18,10 +18,68 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+    }
+
+    ext {
+        // Versioning
+        versionMajor = 0
+        versionMinor = 1
+        versionPatch = 0
+        versionClassifier = null
+        buildNumber = 1 // for alpha version only
+        isSnapshot = true
+
+        // Android
+        androidCompileSdkVersion = 28
+        androidMinSdkVersion = 21
+        androidTargetSdkVersion = 28
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+Integer generateAlphaVersionCode() {
+    return 2000000000 + buildNumber
+}
+
+Integer generateBetaVersionCode() {
+    return ext.androidMinSdkVersion * 10000000 + ext.versionMajor * 10000 + ext.versionMinor * 100 + ext.versionPatch
+}
+
+Integer generateProdVersionCode() {
+    return ext.versionMajor * 10000 + ext.versionMinor * 100 + ext.versionPatch
+}
+
+String generateAlphaVersionName() {
+    String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+    ext.versionClassifier = "alpha"
+
+    if (ext.versionClassifier != null) {
+        versionName += "-" + ext.versionClassifier
+    }
+    return versionName
+}
+
+String generateBetaVersionName() {
+    String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+    ext.versionClassifier = "alpha"  // Update to beta after 80% functionality will be complete
+
+    if (ext.versionClassifier != null) {
+        versionName += "-" + ext.versionClassifier
+    }
+    return versionName
+}
+
+String generateProdVersionName() {
+    String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+    if (ext.versionClassifier == null && ext.isSnapshot) {
+        ext.versionClassifier = "SNAPSHOT"
+    }
+
+    if (ext.versionClassifier != null) {
+        versionName += "-" + ext.versionClassifier
+    }
+    return versionName
 }
