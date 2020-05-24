@@ -50,7 +50,6 @@ deploy:
     - provider: travis
         on:
             branch: travis
-            condition: $TRAVIS_TAG =~ ^\d{10}$
     - provider: github
         overwrite: true
         skip_cleanup: true
