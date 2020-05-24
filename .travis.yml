@@ -22,3 +22,6 @@ branches:
     - master
     - alpha
     - travis
+
+script:
+    - ./gradlew build check
